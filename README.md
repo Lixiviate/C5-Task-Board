@@ -25,6 +25,9 @@ This is a simple project that involves creating a task board to manage multiple 
 - Base code provided by: [The Coding Bootcamp](https://github.com/coding-boot-camp/musical-happiness)
 - Modifications by [Lixiviate](https://github.com/Lixiviate)
 - Code assistance from:
-  - [edX Xpert Learning Assistant](https://www.edx.org/)
+  - [Bootstrap](https://getbootstrap.com)
+  - [jQuery API](https://api.jquery.com/)
+  - [Day.js](https://day.js.org/)
   - [MDN Web Docs](https://developer.mozilla.org/en-US/)
   - [W3 Schools](https://www.w3schools.com/)
+  - [edX Xpert Learning Assistant](https://www.edx.org/)
