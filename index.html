@@ -47,6 +47,7 @@
       </div>
       <!-- TODO: Create a modal with a form to add tasks -->
       <!-- Modal Form Below -->
+      <form id="taskForm">
       <div
         class="modal fade"
         id="formModal"
@@ -57,7 +58,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="formModalLabel">Modal title</h1>
+              <h1 class="modal-title" id="formModalLabel">Add Task</h1>
               <button
                 type="button"
                 class="btn-close"
@@ -65,7 +66,43 @@
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">...</div>
+            <div class="modal-body">
+              <!-- Form Below -->
+              <div class="mb-3">
+                <label for="taskTitle" class="form-label">Task Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="taskTitle"
+                  placeholder="Enter Title"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="taskDeadline" class="form-label">Due Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="taskDeadline"
+                  placeholder="Select Deadline"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="taskDescription" class="form-label"
+                  >Task Description</label
+                >
+                <textarea
+                  class="form-control"
+                  id="taskDescription"
+                  rows="3"
+                  placeholder="Input Description"
+                  required
+                ></textarea>
+              </div>
+            </form>
+              <!-- Form Above -->
+            </div>
             <div class="modal-footer">
               <button
                 type="button"
@@ -74,14 +111,13 @@
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
-                Save changes
+              <button type="button" class="btn btn-primary" id="saveTaskButton">
+                Add Task
               </button>
             </div>
           </div>
         </div>
       </div>
-
       <!-- Modal Form Above -->
       <div class="row swim-lanes text-center justify-content-between">
         <div class="col-12 col-lg-4 d-flex">
