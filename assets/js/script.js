@@ -14,10 +14,6 @@ function renderTaskList() {}
 // TODO: create a function to handle adding a new task
 function handleAddTask(event) {}
 
-$(".btn-success").click(function () {
-  $(".modal").modal("show");
-});
-
 // TODO: create a function to handle deleting a task
 function handleDeleteTask(event) {}
 
