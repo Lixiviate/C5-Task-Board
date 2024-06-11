@@ -1,6 +1,7 @@
 // Retrieve tasks and nextId from localStorage
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
+const dateInput = $("#taskDeadline");
 
 // TODO: create a function to generate a unique task id
 function generateTaskId() {}
@@ -21,4 +22,6 @@ function handleDeleteTask(event) {}
 function handleDrop(event, ui) {}
 
 // TODO: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
-$(document).ready(function () {});
+$(document).ready(function () {
+  dateInput.datepicker();
+});
