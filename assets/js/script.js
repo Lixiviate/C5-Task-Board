@@ -4,7 +4,9 @@ let nextId = JSON.parse(localStorage.getItem("nextId"));
 const dateInput = $("#taskDeadline");
 
 // TODO: create a function to generate a unique task id
-function generateTaskId() {}
+function generateTaskId() {
+  return nextId++;
+}
 
 // TODO: create a function to create a task card
 function createTaskCard(task) {}
