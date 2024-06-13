@@ -30,6 +30,20 @@ function renderTaskList() {}
 // TODO: create a function to handle adding a new task
 function handleAddTask(event) {
   event.preventDefault();
+  const title = titleInput.val();
+  const date = dateInput.val();
+  const desc = descInput.val();
+
+  const newTask = {
+    id: generateTaskId(),
+    title: title,
+    date: dayjs(date).format("YYYY-MM-DD"),
+    desc: desc,
+  };
+
+  taskList.push(newTask);
+  localStorage.setItem("tasks", JSON.stringify(taskList));
+  createTaskCard(newTask);
 }
 
 // TODO: create a function to handle deleting a task
@@ -40,7 +54,9 @@ function handleDrop(event, ui) {}
 
 // TODO: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
-  dateInput.datepicker();
+  dateInput.datepicker({
+    dateFormat: "yy-mm-dd",
+  });
   renderTaskList();
   taskForm.on("submit", handleAddTask);
 });
