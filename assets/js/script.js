@@ -8,12 +8,14 @@ const taskForm = $("#taskForm");
 
 // TODO: create a function to generate a unique task id
 function generateTaskId() {
-  return nextId++;
+  const id = nextId++;
+  localStorage.setItem("nextId", JSON.stringify(nextId));
+  return id;
 }
 
 // TODO: create a function to create a task card
 function createTaskCard(task) {
-  const card = $("<div>").addClass("card");
+  const card = $("<div>").addClass("card mb-2").attr("data-task-id", task.id);
   const cardBody = $("<div>").addClass("card-body");
   const cardTitle = $("<div>").addClass("card-title").text(task.title);
   const cardDate = $("<div>").addClass("card-subtitle").text(task.date);
@@ -22,6 +24,7 @@ function createTaskCard(task) {
     .addClass("btn btn-danger delete")
     .text("Delete")
     .attr("data-task-id", task.id);
+
   cardBody.append(cardTitle, cardDate, cardDesc, cardDelete);
   card.append(cardBody);
   card.appendTo("#todo-cards");
@@ -56,7 +59,7 @@ function handleAddTask(event) {
 
 // TODO: create a function to handle deleting a task
 function handleDeleteTask(event) {
-  const taskId = $(event.target).attr("data-task-id");
+  const taskId = $(event.target).data("task-id");
   taskList = taskList.filter(function (task) {
     return task.id != taskId;
   });
