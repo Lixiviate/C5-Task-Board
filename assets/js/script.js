@@ -56,7 +56,7 @@ function handleAddTask(event) {
 
 // TODO: create a function to handle deleting a task
 function handleDeleteTask(event) {
-  const taskId = $(event.target).data("task-id");
+  const taskId = $(event.target).attr("data-task-id");
   taskList = taskList.filter(function (task) {
     return task.id != taskId;
   });
@@ -72,7 +72,8 @@ $(document).ready(function () {
   dateInput.datepicker({
     dateFormat: "yy-mm-dd",
   });
-  renderTaskList();
+
   taskForm.on("submit", handleAddTask);
   $(document).on("click", ".delete", handleDeleteTask);
+  renderTaskList();
 });
