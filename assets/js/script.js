@@ -1,6 +1,6 @@
 // Retrieve tasks and nextId from localStorage
-let taskList = JSON.parse(localStorage.getItem("tasks"));
-let nextId = JSON.parse(localStorage.getItem("nextId"));
+let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+let nextId = JSON.parse(localStorage.getItem("nextId")) || 1;
 const titleInput = $("#taskTitle");
 const dateInput = $("#taskDeadline");
 const descInput = $("#taskDescription");
@@ -32,6 +32,9 @@ function createTaskCard(task) {
 
 // TODO: create a function to render the task list and make cards draggable
 function renderTaskList() {
+  $("#todo-cards").empty();
+  $("#in-progress-cards").empty();
+  $("#done-cards").empty();
   taskList.forEach(function (task) {
     createTaskCard(task);
   });
@@ -55,6 +58,7 @@ function handleAddTask(event) {
   taskList.push(newTask);
   localStorage.setItem("tasks", JSON.stringify(taskList));
   createTaskCard(newTask);
+  renderTaskList();
 }
 
 // TODO: create a function to handle deleting a task
