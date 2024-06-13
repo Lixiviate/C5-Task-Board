@@ -45,9 +45,12 @@ function renderTaskList() {
   $("#todo-cards").empty();
   $("#in-progress-cards").empty();
   $("#done-cards").empty();
+
   taskList.forEach(function (task) {
     createTaskCard(task);
   });
+
+  $(".task-card").draggable({});
 }
 
 // TODO: create a function to handle adding a new task
@@ -97,9 +100,11 @@ $(document).ready(function () {
 
   taskForm.on("submit", handleAddTask);
   $(document).on("click", ".delete", handleDeleteTask);
-  $(".lane .card-body").droppable({
+
+  $(".card-body").droppable({
     accept: ".task-card",
-    drop: handleDrop(),
+    drop: handleDrop,
   });
+
   renderTaskList();
 });
