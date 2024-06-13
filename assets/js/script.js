@@ -22,7 +22,7 @@ function createTaskCard(task) {
     .addClass("btn btn-danger delete")
     .text("Delete")
     .attr("data-task-id", task.id);
-  cardBody.append(cardTitle, cardDate, cardDisc, cardDelete);
+  cardBody.append(cardTitle, cardDate, cardDesc, cardDelete);
   card.append(cardBody);
   card.appendTo("#todo-cards");
 }
