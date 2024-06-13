@@ -25,7 +25,7 @@ This is a simple project that involves creating a task board to manage multiple 
 
 ## Deployed Page
 
-[Deployed GitHub Page]()
+[Deployed GitHub Page](https://lixiviate.github.io/C5-Task-Board/)
 
 ![Example](./assets/images/Example.png)
 
