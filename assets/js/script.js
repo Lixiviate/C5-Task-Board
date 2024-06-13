@@ -29,6 +29,17 @@ function createTaskCard(task) {
     .text("Delete")
     .attr("data-task-id", task.id);
 
+  const dueDate = dayjs(task.date);
+  const today = dayjs();
+  const overdue = dueDate.isBefore(today, "day");
+  const nearDeadline = dueDate.isSame(today, "day");
+
+  if (overdue) {
+    card.addClass("bg-danger");
+  } else if (nearDeadline) {
+    card.addClass("bg-warning");
+  }
+
   cardBody.append(cardTitle, cardDate, cardDesc, cardDelete);
   card.append(cardBody);
 
