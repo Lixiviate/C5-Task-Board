@@ -1,6 +1,7 @@
 // Retrieve tasks and nextId from localStorage
 let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
 let nextId = JSON.parse(localStorage.getItem("nextId")) || 1;
+
 const titleInput = $("#taskTitle");
 const dateInput = $("#taskDeadline");
 const descInput = $("#taskDescription");
