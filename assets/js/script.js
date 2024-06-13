@@ -15,7 +15,10 @@ function generateTaskId() {
 
 // TODO: create a function to create a task card
 function createTaskCard(task) {
-  const card = $("<div>").addClass("card mb-2").attr("data-task-id", task.id);
+  const card = $("<div>")
+    .addClass("card mb-2 task-card")
+    .attr("data-task-id", task.id)
+    .addClass(task.status);
   const cardBody = $("<div>").addClass("card-body");
   const cardTitle = $("<div>").addClass("card-title").text(task.title);
   const cardDate = $("<div>").addClass("card-subtitle").text(task.date);
@@ -27,7 +30,14 @@ function createTaskCard(task) {
 
   cardBody.append(cardTitle, cardDate, cardDesc, cardDelete);
   card.append(cardBody);
-  card.appendTo("#todo-cards");
+
+  if (task.status === "to-do") {
+    card.appendTo("#todo-cards");
+  } else if (task.status === "in-progress") {
+    card.appendTo("#in-progress-cards");
+  } else if (task.status === "done") {
+    card.appendTo("#done-cards");
+  }
 }
 
 // TODO: create a function to render the task list and make cards draggable
@@ -57,7 +67,6 @@ function handleAddTask(event) {
 
   taskList.push(newTask);
   localStorage.setItem("tasks", JSON.stringify(taskList));
-  createTaskCard(newTask);
   renderTaskList();
 
   // Reset form after adding task card
@@ -88,5 +97,9 @@ $(document).ready(function () {
 
   taskForm.on("submit", handleAddTask);
   $(document).on("click", ".delete", handleDeleteTask);
+  $(".lane .card-body").droppable({
+    accept: ".task-card",
+    drop: handleDrop(),
+  });
   renderTaskList();
 });
