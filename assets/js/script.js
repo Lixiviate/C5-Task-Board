@@ -50,7 +50,10 @@ function renderTaskList() {
     createTaskCard(task);
   });
 
-  $(".task-card").draggable({});
+  $(".task-card").draggable({
+    revert: "invalid",
+    helper: "clone",
+  });
 }
 
 // TODO: create a function to handle adding a new task
@@ -90,7 +93,19 @@ function handleDeleteTask(event) {
 }
 
 // TODO: create a function to handle dropping a task into a new status lane
-function handleDrop(event, ui) {}
+function handleDrop(event, ui) {
+  event.preventDefault();
+  const taskId = ui.draggable.data("task-id");
+  const newStatus = $(this).parent().attr("id");
+
+  for (let i = 0; i < taskList.length; i++) {
+    if (taskList[i].id == taskId) {
+      taskList[i].status = newStatus;
+    }
+  }
+  localStorage.setItem("tasks", JSON.stringify(taskList));
+  renderTaskList();
+}
 
 // TODO: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
