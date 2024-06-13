@@ -17,7 +17,7 @@ function createTaskCard(task) {
   const cardBody = $("<div>").addClass("card-body");
   const cardTitle = $("<div>").addClass("card-title").text(task.title);
   const cardDate = $("<div>").addClass("card-subtitle").text(task.date);
-  const cardDisc = $("<div>").addClass("card-text").text(task.desc);
+  const cardDesc = $("<div>").addClass("card-text").text(task.desc);
   const cardDelete = $("<button>")
     .addClass("btn btn-danger delete")
     .text("Delete")
@@ -46,6 +46,7 @@ function handleAddTask(event) {
     title: title,
     date: dayjs(date).format("YYYY-MM-DD"),
     desc: desc,
+    status: "to-do",
   };
 
   taskList.push(newTask);
