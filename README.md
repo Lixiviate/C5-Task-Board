@@ -6,19 +6,28 @@ This is a simple project that involves creating a task board to manage multiple 
 
 ## Features
 
+- Display tasks in columns based on their progress state.
+- Color-code tasks based on their proximity to deadlines.
+- Add new tasks with a title, description, and deadline.
+- Edit existing tasks.
+- Delete tasks.
+- Drag-and-drop functionality to move tasks between progress columns.
+- Persistent task state using localStorage.
+
 ## Usage
+
+1. Open the task board via the deployed link below.
+2. Add a new task by clicking the “Add Task” button and filling in the task details.
+3. Tasks will display in the “To Do” column.
+4. Drag tasks between columns to update their progress state.
+5. Edit or delete tasks as needed.
+6. Task states and details persist across page refreshes.
 
 ## Deployed Page
 
 [Deployed GitHub Page]()
 
-![Example]()
-
-![Example]()
-
-![Example]()
-
-![Example]()
+![Example](./assets/images/Example.png)
 
 ## Source Code
 
