@@ -7,14 +7,14 @@ const dateInput = $("#taskDeadline");
 const descInput = $("#taskDescription");
 const taskForm = $("#taskForm");
 
-// TODO: create a function to generate a unique task id
+// Generates a unique task id and updates it in localStorage
 function generateTaskId() {
   const id = nextId++;
   localStorage.setItem("nextId", JSON.stringify(nextId));
   return id;
 }
 
-// TODO: create a function to create a task card
+// Creates a task card element and appends it to the applicable column
 function createTaskCard(task) {
   const card = $("<div>")
     .addClass("card mb-2 task-card")
@@ -29,6 +29,7 @@ function createTaskCard(task) {
     .text("Delete")
     .attr("data-task-id", task.id);
 
+  // Determines if the task is overdue or near the deadline and color codes it
   const dueDate = dayjs(task.date);
   const today = dayjs();
   const overdue = dueDate.isBefore(today, "day");
@@ -43,6 +44,7 @@ function createTaskCard(task) {
   cardBody.append(cardTitle, cardDate, cardDesc, cardDelete);
   card.append(cardBody);
 
+  // Appends the task card to the applicable column based on status
   if (task.status === "to-do") {
     card.appendTo("#todo-cards");
   } else if (task.status === "in-progress") {
@@ -52,7 +54,7 @@ function createTaskCard(task) {
   }
 }
 
-// TODO: create a function to render the task list and make cards draggable
+// Renders all task cards and makes them draggable
 function renderTaskList() {
   $("#todo-cards").empty();
   $("#in-progress-cards").empty();
@@ -68,7 +70,7 @@ function renderTaskList() {
   });
 }
 
-// TODO: create a function to handle adding a new task
+// Function that handles adding a new task from the form input
 function handleAddTask(event) {
   event.preventDefault();
   const title = titleInput.val();
@@ -94,9 +96,10 @@ function handleAddTask(event) {
   $("#formModal").modal("hide");
 }
 
-// TODO: create a function to handle deleting a task
+// function to handle deleting a task
 function handleDeleteTask(event) {
   const taskId = $(event.target).data("task-id");
+  // Removes task from list and updates local storage
   taskList = taskList.filter(function (task) {
     return task.id != taskId;
   });
@@ -104,12 +107,13 @@ function handleDeleteTask(event) {
   renderTaskList();
 }
 
-// TODO: create a function to handle dropping a task into a new status lane
+// Function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
   event.preventDefault();
   const taskId = ui.draggable.data("task-id");
   const newStatus = $(this).parent().attr("id");
 
+  // Updates the status of the task and saves the updated task list to local storage
   for (let i = 0; i < taskList.length; i++) {
     if (taskList[i].id == taskId) {
       taskList[i].status = newStatus;
@@ -119,19 +123,21 @@ function handleDrop(event, ui) {
   renderTaskList();
 }
 
-// TODO: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
+// when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
+  // initialize the date picker for the deadline input
   dateInput.datepicker({
     dateFormat: "yy-mm-dd",
   });
-
+  //  Sets up form submit
   taskForm.on("submit", handleAddTask);
+  // Sets up click event for task delete buttons
   $(document).on("click", ".delete", handleDeleteTask);
-
+  // Makes tasks droppable
   $(".card-body").droppable({
     accept: ".task-card",
     drop: handleDrop,
   });
-
+  // Renders the task list
   renderTaskList();
 });
