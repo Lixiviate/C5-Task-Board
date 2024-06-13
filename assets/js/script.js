@@ -67,6 +67,7 @@ function renderTaskList() {
   $(".task-card").draggable({
     revert: "invalid",
     helper: "clone",
+    zIndex: 100,
   });
 }
 
