@@ -59,6 +59,12 @@ function handleAddTask(event) {
   localStorage.setItem("tasks", JSON.stringify(taskList));
   createTaskCard(newTask);
   renderTaskList();
+
+  // Reset form after adding task card
+  titleInput.val("");
+  dateInput.val("");
+  descInput.val("");
+  $("#formModal").modal("hide");
 }
 
 // TODO: create a function to handle deleting a task
